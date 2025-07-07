@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Catalog Portal</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+}
+.menu-icon {
+  cursor: pointer;
+}
+.language-selector {
+  padding: 5px;
+}
+.sidebar {
+  width: 200px;
+  background: #444;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: -200px;
+  height: 100%;
+  overflow: auto;
+  transition: 0.3s;
+  padding-top: 60px;
+}
+.sidebar.open {
+  left: 0;
+}
+.sidebar a {
+  display: block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+.sidebar a:hover {
+  background: #575757;
+}
+.main {
+  margin-left: 20px;
+  padding: 20px;
+}
+.products-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px;
+}
+.product {
+  flex: 0 0 auto;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.product img {
+  width: 100%;
+  border-radius: 10px;
+}
+.product-price {
+  color: #e91e63;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.orderBtn {
+  margin-top: 10px;
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+footer {
+  text-align: center;
+  padding: 10px;
+  background: #333;
+  color: white;
+  margin-top: 20px;
+}
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 24px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<header>
+<span class="menu-icon" onclick="toggleSidebar()"><i class="fas fa-bars"></i></span>
+<div id="welcomeText" style="margin: 0 auto;"> Welcome to PrintHub 🎁</div>
+<select class="language-selector" onchange="changeLanguage(this.value)">
+  <option value="en">English</option>
+ 
+</select>
+</header>
+
+<div class="sidebar" id="sidebar">
+  <a href="#" onclick="filterCategory('all'); toggleSidebar();">Home</a>
+  <a href="#" onclick="filterCategory('chocolates'); toggleSidebar();">Chocolates</a>
+  <a href="#" onclick="filterCategory('gifts'); toggleSidebar();">Gifts</a>
+  <a href="#" onclick="filterCategory('frames'); toggleSidebar();">Photo Frames</a>
+  <a href="#" onclick="filterCategory('tshirts'); toggleSidebar();">T-shirts</a>
+  <a href="#" onclick="filterCategory('banking'); toggleSidebar();">Banking Services</a>
+</div>
+
+<div class="main">
+<h2 id="mainHeading">🎁 Welcome to PrintHub 🎁 </h2>
+<div class="products-scroll" id="products">
+  <div class="product chocolates">
+    <div>Customized Photo Wrapper Chocolates</div>
+    <img src="https://via.placeholder.com/300x200/ffcdd2/333?text=Birthday+Chocolates">
+	<img src="C:\Users\chiru\OneDrive\Pictures\myportal\cho3zoom.png" alt="Product 2">
+    <div class="product-price">Starting From 5rs /1 pices </div>
+	<h4> Note:Design chocolate wrapper as per your requirement </h6>
+    <button class="orderBtn" onclick="orderNow('Birthday Chocolates', '₹Starting From 5rs')">Order Now</button>
+  </div>
+  <div class="product gifts">
+    <div>Customized White Tea Mug</div>
+    <img src="https://via.placeholder.com/300x200/c8e6c9/333?text=Anniversary+Gift">
+    <div class="product-price">₹250</div>
+    <button class="orderBtn" onclick="orderNow('Anniversary Gift', '250')">Order Now</button>
+  </div>
+  <div class="product gifts">
+    <div>Customized color Tea Mug</div>
+    <img src="https://via.placeholder.com/300x200/c8e6c9/333?text=Anniversary+Gift">
+    <div class="product-price">₹330</div>
+    <button class="orderBtn" onclick="orderNow('Anniversary Gift', '₹330')">Order Now</button>
+  </div>
+  <div class="product frames">
+    <div>Heart shape Photo Frames</div>
+    <img src="https://via.placeholder.com/300x200/ffe0b2/333?text=Photo+Frames">
+    <div class="product-price">₹699</div>
+    <button class="orderBtn" onclick="orderNow('Heart shape Photo Frames', '₹699')">Order Now</button>
+  </div>
+   <div class="product frames">
+    <div> Kids Photo Frames</div>
+    <img src="https://via.placeholder.com/300x200/ffe0b2/333?text=Photo+Frames">
+    <div class="product-price">₹899</div>
+    <button class="orderBtn" onclick="orderNow('Kids Photo Frames', '₹699')">Order Now</button>
+  </div>
+  
+   <div class="product frames">
+    <div>Anniversary Gift Photo Frames</div>
+    <img src="https://via.placeholder.com/300x200/ffe0b2/333?text=Photo+Frames">
+    <div class="product-price">₹699</div>
+    <button class="orderBtn" onclick="orderNow('Anniversary Gift Photo Frames', '₹699')">Order Now</button>
+  </div>
+  
+   <div class="product frames">
+    <div>Birthday Gift Photo frame</div>
+    <img src="https://via.placeholder.com/300x200/ffe0b2/333?text=Photo+Frames">
+    <div class="product-price">₹599</div>
+    <button class="orderBtn" onclick="orderNow('Birthday Gift Photo frame', '₹599')">Order Now</button>
+  </div>
+  <div class="product tshirts">
+    <div>Custom Photo printing T-shirt(Nylon)</div>
+    <img src="https://via.placeholder.com/300x200/90caf9/333?text=Custom+T-shirt">
+    <div class="product-price">₹180</div>
+    <button class="orderBtn" onclick="orderNow('Custom T-shirt', '₹180')">Order Now</button>
+  </div>
+  <div class="product tshirts">
+    <div>Custom Photo printing T-shirt(polyester)</div>
+    <img src="https://via.placeholder.com/300x200/90caf9/333?text=Custom+T-shirt">
+    <div class="product-price">₹280</div>
+    <button class="orderBtn" onclick="orderNow('Custom T-shirt', '₹180')">Order Now</button>
+  </div>
+  <div class="product tshirts">
+    <div>Collar Neck Plain Cotton Tshirt</div>
+    <img src="https://via.placeholder.com/300x200/90caf9/333?text=Custom+T-shirt">
+    <div class="product-price">₹180</div>
+    <button class="orderBtn" onclick="orderNow('Collar Neck Plain Cotton Tshirt', '₹320')">Order Now</button>
+  </div>
+  <div class="product banking">
+    <div>Credit Card to Account Transfer </div>
+    <img src="https://via.placeholder.com/300x200/ffccbc/333?text=Credit+Card+EMI">
+    <div class="product-price">Enquiry</div>
+    <button class="orderBtn" onclick="orderNow('Credit Card to Account Transfer ', 'Enquiry')">Click Here</button>
+  </div>
+    <div class="product banking">
+    <div>Loan </div>
+    <img src="https://via.placeholder.com/300x200/ffccbc/333?text=Credit+Card+EMI">
+    <div class="product-price"> Enquiry </div>
+    <button class="orderBtn" onclick="orderNow('Loan ', 'Enquiry')">Click Here</button>
+  </div>
+</div>
+
+<div class="contact-info">
+  <h3 id="contactHeading">Contact Information</h3>
+  📞 WhatsApp: <a href="https://wa.me/919398273846">+91 9398273846</a><br>
+  📧 Email: printhub0026@gmail.com
+</div>
+</div>
+
+<a class="whatsapp-float" href="https://wa.me/919398273846" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<footer>
+&copy; 2025 PrintHub - All Rights Reserved.
+</footer>
+
+<script>
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("open");
+}
+
+function filterCategory(category) {
+  document.querySelectorAll(".product").forEach(product => {
+    if (category === 'all' || product.classList.contains(category)) {
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
+    }
+  });
+}
+
+function orderNow(product, price) {
+  const url = `https://wa.me/919398273846?text=I want to order: ${encodeURIComponent(product)} at ${encodeURIComponent(price)}`;
+  window.open(url, '_blank');
+}
+
+window.onload = () => filterCategory('all');
+</script>
+
+</body>
+</html>
